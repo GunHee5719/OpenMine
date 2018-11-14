@@ -1,4 +1,3 @@
-## OpenMine
 # Project Name
  - Open Mine : Automatic Minesweeper Gameplay Program
 
