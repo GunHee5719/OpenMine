@@ -20,6 +20,10 @@
   
  - IntelliJ IDE
   > https://www.jetbrains.com/idea/
+  
+  
+  **If opencv file is extracted on c:\ route, this project will work well. If not, set your project refer to this site** 
+  >https://medium.com/@aadimator/how-to-set-up-opencv-in-intellij-idea-6eb103c1d45c
 
 ## Development Survey
 ### 1. Mouse Event
