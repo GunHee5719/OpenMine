@@ -13,10 +13,14 @@
 
 ## Development Tools
  - OpenCV 3.4.3
+  > https://opencv.org/releases.html
+  
  - Java JDK 11.0.1
+  > https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
+  
  - IntelliJ IDE
+  > https://www.jetbrains.com/idea/
 
-***
 ## Development Survey
 ### 1. Mouse Event
  - Because we must control the computer’s mouse in our program, we will use Mouse Event, which is **not** implemented function, implemented by ourselves. And then we will use it to click the minesweeper’s window area for detecting mine.
@@ -27,7 +31,6 @@
 ### 3. Number Detection
  - Because our program works by sensing numbers, Number Detection is very important. There are various libraries like Detecting Car license plate, or Business card, and so on. So we will use the basic algorithm of them to adapt to our purposes.
 
-***
 ## Plan
 ### 1. Week 1 (11/09 ~ 11/14)
  - Team struct & Project planning
