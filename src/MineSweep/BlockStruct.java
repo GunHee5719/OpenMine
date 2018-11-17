@@ -5,6 +5,8 @@ import BlockData.NoneBlock;
 
 import java.util.ArrayList;
 
+import static MineSweep.Main.completeMineSweep;
+import static MineSweep.Main.minePosition;
 import static MineSweep.Main.nonePosition;
 
 public class BlockStruct {
@@ -98,6 +100,43 @@ public class BlockStruct {
         }
 
         this.buffers[i][j] = buffer;
+    }
+
+    // set buffers after finding mine
+    // i, j -> mine of position
+    public void calcBuffer(int i, int j){
+        for (int x = i - 1; x < i + 2; x++){
+            for (int y = j - 1; y < j + 2; y++){
+                if (x < 0 || x > 15) continue;
+                if (y < 0 || y > 29) continue;
+
+                if (buffers[x][y] == minePosition) continue;
+                if (buffers[x][y] == nonePosition) continue;
+                if (buffers[x][y] == completeMineSweep) continue;
+
+                buffers[x][y]--;
+            }
+        }
+    }
+
+    public void findMine(int i, int j){
+        if (buffers[i][j] == minePosition) return;
+        if (buffers[i][j] == nonePosition) return;
+        if (buffers[i][j] == completeMineSweep) return;
+
+        int currentBuffer = buffers[i][j];
+        int remainPosition = 0;
+
+        for (int x = i - 1; x < i + 2; x++){
+            for (int y = j - 1; y < j + 2; y++){
+                if (x < 0 || x > 15) continue;
+                if (y < 0 || y > 29) continue;
+                if (x == i && y == j) continue;
+
+                if (buffers[x][y] == nonePosition) remainPosition++;
+
+            }
+        }
     }
 
     // check noneBlock and this pattern
