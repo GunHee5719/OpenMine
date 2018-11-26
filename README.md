@@ -12,18 +12,14 @@
  - When fail game, restart game.
 
 ## Development Tools
- - OpenCV 3.4.3
-  > https://opencv.org/releases.html
+ - JNA 5.1.0
+  > https://github.com/java-native-access/jna
   
  - Java JDK 11.0.1
   > https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
   
  - IntelliJ IDE
   > https://www.jetbrains.com/idea/
-  
-  
-  **If opencv file is extracted on c:\ route, this project will work well. If not, set your project refer to this site** 
-  >https://medium.com/@aadimator/how-to-set-up-opencv-in-intellij-idea-6eb103c1d45c
 
 ## Development Survey
 ### 1. Mouse Event
