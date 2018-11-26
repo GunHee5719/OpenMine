@@ -7,6 +7,7 @@ public class Main {
     public static int completeMineSweep = 0;
     public static int nonePosition = -1;
     public static int Error = -2;
+
     public static void main(String[] args) {
         
     }
