@@ -16,7 +16,7 @@ public class BlockStruct {
     private BlockStruct(){
         for (int i = 0; i < 16; i++){
             for (int j = 0; j < 30; j++){
-                blocks[i][j] = new NoneBlock(i, j, nonePosition);
+                blocks[i][j] = new NoneBlock(i, j);
             }
         }
 
@@ -47,7 +47,7 @@ public class BlockStruct {
     public void init(){
         for (int i = 0; i < 16; i++){
             for (int j = 0; j < 30; j++){
-                blocks[i][j] = new NoneBlock(i, j, nonePosition);
+                blocks[i][j] = new NoneBlock(i, j);
             }
         }
 
