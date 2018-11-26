@@ -12,6 +12,10 @@ public class NumberBlock extends Block {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public void MouseClick() throws AWTException {
         // 양쪽 클릭
