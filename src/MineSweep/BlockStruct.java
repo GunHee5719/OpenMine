@@ -125,6 +125,27 @@ public class BlockStruct {
                 if (buffers[x][y] == completeMineSweep) continue;
 
                 buffers[x][y]--;
+
+                if (buffers[x][y] == 0){
+                    for (int check_x = i - 1; check_x < i + 2; check_x++){
+                        for (int check_y = j - 1; check_y < j + 2; check_y++){
+                            if (check_x < 0 || check_x > 15) continue;
+                            if (check_y < 0 || check_y > 29) continue;
+
+                            check_buffers[check_x][check_y] = false;
+                        }
+                    }
+                }
+                else if (buffers[x][y] == 1){
+                    for (int check_x = i - 1; check_x < i + 2; check_x++){
+                        for (int check_y = j - 1; check_y < j + 2; check_y++){
+                            if (check_x < 0 || check_x > 15) continue;
+                            if (check_y < 0 || check_y > 29) continue;
+
+                            check_buffers[check_x][check_y] = true;
+                        }
+                    }
+                }
             }
         }
     }
@@ -166,6 +187,22 @@ public class BlockStruct {
 
         if (currentBuffer == remainPosition){
             // click left and right button of mouse
+        }
+
+        int noneExceptCheckTrue = 0;
+
+        for (int x = 0; x < click_x.size(); x++){
+            if (!check_buffers[click_x.get(x)][click_y.get(x)]){
+                noneExceptCheckTrue += 1;
+            }
+        }
+
+        if (noneExceptCheckTrue == currentBuffer - 1){
+            for (int x = 0; x < click_x.size(); x++){
+                if (!check_buffers[click_x.get(x)][click_y.get(x)]){
+                    // click right button of mouse
+                }
+            }
         }
     }
 
