@@ -15,5 +15,13 @@ public abstract class Block {
         this.yPixel = j;
     }
 
-    abstract void MouseClick() throws AWTException;
+    public int getxPixel() {
+        return xPixel;
+    }
+
+    public int getyPixel() {
+        return yPixel;
+    }
+
+    abstract public void MouseClick() throws AWTException;
 }
