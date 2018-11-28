@@ -1,8 +1,10 @@
 package MineSweep;
 
 import BlockData.Block;
+import BlockData.MineBlock;
 import BlockData.NoneBlock;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import static MineSweep.Main.*;
@@ -150,7 +152,7 @@ public class BlockStruct {
         }
     }
 
-    public void findMine(int i, int j) {
+    public void findMine(int i, int j) throws AWTException {
         if (buffers[i][j] == minePosition) return;
         if (buffers[i][j] == nonePosition) return;
         if (buffers[i][j] == completeMineSweep) return;
@@ -182,6 +184,10 @@ public class BlockStruct {
 
             for (int x = 0; x < click_x.size(); x++){
                 buffers[click_x.get(x)][click_y.get(x)] = minePosition;
+                this.calcBuffer(click_x.get(x), click_y.get(x));
+                MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
+                blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
+                blocks[click_x.get(x)][click_y.get(x)].MouseClick();
             }
         }
 
@@ -201,6 +207,11 @@ public class BlockStruct {
             for (int x = 0; x < click_x.size(); x++){
                 if (!check_buffers[click_x.get(x)][click_y.get(x)]){
                     // click right button of mouse
+                    buffers[click_x.get(x)][click_y.get(x)] = minePosition;
+                    this.calcBuffer(click_x.get(x), click_y.get(x));
+                    MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
+                    blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
+                    blocks[click_x.get(x)][click_y.get(x)].MouseClick();
                 }
             }
         }
@@ -210,7 +221,7 @@ public class BlockStruct {
 
     // check noneBlock and this pattern
     // All click mine of position in functions
-    public void check121(int i, int j){
+    public void check121(int i, int j) throws AWTException {
         if (buffers[i][j] != 1) return;
 
         ArrayList<Integer> i_list = new ArrayList<>();
@@ -232,12 +243,34 @@ public class BlockStruct {
                             && (buffers[i + 2][j + 1] == minePosition || buffers[i + 2][j + 1] == nonePosition)){
 
                         // click mouse i j+1, i+2 j+1
+                        buffers[i][j + 1] = minePosition;
+                        this.calcBuffer(i, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i][j + 1].getxPixel(), blocks[i][j + 1].getyPixel());
+                        blocks[i][j + 1] = mineBlock1;
+                        blocks[i][j + 1].MouseClick();
+
+                        buffers[i + 2][j + 1] = minePosition;
+                        this.calcBuffer(i + 2, j + 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 2][j + 1].getxPixel(), blocks[i + 2][j + 1].getyPixel());
+                        blocks[i + 2][j + 1] = mineBlock2;
+                        blocks[i + 2][j + 1].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((buffers[i][j - 1] == minePosition || buffers[i][j - 1] == nonePosition)
                             && (buffers[i + 2][j - 1] == minePosition || buffers[i + 2][j - 1] == nonePosition)){
 
                         // click mouse i j-1, i+2 j-1
+                        buffers[i][j - 1] = minePosition;
+                        this.calcBuffer(i, j - 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i][j - 1].getxPixel(), blocks[i][j - 1].getyPixel());
+                        blocks[i][j - 1] = mineBlock1;
+                        blocks[i][j - 1].MouseClick();
+
+                        buffers[i + 2][j - 1] = minePosition;
+                        this.calcBuffer(i + 2, j - 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 2][j - 1].getxPixel(), blocks[i + 2][j - 1].getyPixel());
+                        blocks[i + 2][j - 1] = mineBlock2;
+                        blocks[i + 2][j - 1].MouseClick();
                     }
                 }
             }
@@ -256,12 +289,34 @@ public class BlockStruct {
                             && (buffers[i + 1][j + 2] == minePosition || buffers[i + 1][j + 2] == nonePosition)){
 
                         // click mouse i+1 j, i+1 j+2
+                        buffers[i + 1][j] = minePosition;
+                        this.calcBuffer(i + 1, j);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j].getxPixel(), blocks[i + 1][j].getyPixel());
+                        blocks[i + 1][j] = mineBlock1;
+                        blocks[i + 1][j].MouseClick();
+
+                        buffers[i + 1][j + 2] = minePosition;
+                        this.calcBuffer(i + 1, j + 2);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 1][j + 2].getxPixel(), blocks[i + 1][j + 2].getyPixel());
+                        blocks[i + 1][j + 2] = mineBlock2;
+                        blocks[i + 1][j + 2].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((buffers[i - 1][j] == minePosition || buffers[i - 1][j] == nonePosition)
                             && (buffers[i - 1][j + 2] == minePosition || buffers[i - 1][j + 2] == nonePosition)){
 
                         // click mouse i-1 j, i-1 j+2
+                        buffers[i - 1][j] = minePosition;
+                        this.calcBuffer(i - 1, j);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i - 1][j].getxPixel(), blocks[i - 1][j].getyPixel());
+                        blocks[i - 1][j] = mineBlock1;
+                        blocks[i - 1][j].MouseClick();
+
+                        buffers[i - 1][j + 2] = minePosition;
+                        this.calcBuffer(i - 1, j + 2);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i - 1][j + 2].getxPixel(), blocks[i - 1][j + 2].getyPixel());
+                        blocks[i - 1][j + 2] = mineBlock2;
+                        blocks[i - 1][j + 2].MouseClick();
                     }
                 }
             }
@@ -269,7 +324,7 @@ public class BlockStruct {
 
         return;
     }
-    public void check1221(int i, int j){
+    public void check1221(int i, int j) throws AWTException {
         if (buffers[i][j] != 1) return;
 
         ArrayList<Integer> i_list = new ArrayList<>();
@@ -293,12 +348,34 @@ public class BlockStruct {
                             && (buffers[i + 2][j + 1] == minePosition || buffers[i + 2][j + 1] == nonePosition)){
 
                         // click mouse i+1 j+1, i+2 j+1
+                        buffers[i + 1][j + 1] = minePosition;
+                        this.calcBuffer(i + 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j + 1].getxPixel(), blocks[i + 1][j + 1].getyPixel());
+                        blocks[i + 1][j + 1] = mineBlock1;
+                        blocks[i + 1][j + 1].MouseClick();
+
+                        buffers[i + 2][j + 1] = minePosition;
+                        this.calcBuffer(i + 2, j + 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 2][j + 1].getxPixel(), blocks[i + 2][j + 1].getyPixel());
+                        blocks[i + 2][j + 1] = mineBlock2;
+                        blocks[i + 2][j + 1].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((buffers[i + 1][j - 1] == minePosition || buffers[i + 1][j - 1] == nonePosition)
                             && (buffers[i + 2][j - 1] == minePosition || buffers[i + 2][j - 1] == nonePosition)){
 
                         // click mouse i+1 j-1, i+2 j-1
+                        buffers[i + 1][j - 1] = minePosition;
+                        this.calcBuffer(i + 1, j - 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j - 1].getxPixel(), blocks[i + 1][j - 1].getyPixel());
+                        blocks[i + 1][j - 1] = mineBlock1;
+                        blocks[i + 1][j - 1].MouseClick();
+
+                        buffers[i + 2][j - 1] = minePosition;
+                        this.calcBuffer(i + 2, j - 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 2][j - 1].getxPixel(), blocks[i + 2][j - 1].getyPixel());
+                        blocks[i + 2][j - 1] = mineBlock2;
+                        blocks[i + 2][j - 1].MouseClick();
                     }
                 }
             }
@@ -319,12 +396,34 @@ public class BlockStruct {
                             && (buffers[i + 1][j + 2] == minePosition || buffers[i + 1][j + 2] == nonePosition)){
 
                         // click mouse i+1 j+1, i+1 j+2
+                        buffers[i + 1][j + 1] = minePosition;
+                        this.calcBuffer(i + 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j + 1].getxPixel(), blocks[i + 1][j + 1].getyPixel());
+                        blocks[i + 1][j + 1] = mineBlock1;
+                        blocks[i + 1][j + 1].MouseClick();
+
+                        buffers[i + 1][j + 2] = minePosition;
+                        this.calcBuffer(i + 1, j + 2);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 1][j + 2].getxPixel(), blocks[i + 1][j + 2].getyPixel());
+                        blocks[i + 1][j + 2] = mineBlock2;
+                        blocks[i + 1][j + 2].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((buffers[i - 1][j + 1] == minePosition || buffers[i - 1][j + 1] == nonePosition)
                             && (buffers[i - 1][j + 2] == minePosition || buffers[i - 1][j + 2] == nonePosition)){
 
                         // click mouse i-1 j+1, i-1 j+2
+                        buffers[i - 1][j + 1] = minePosition;
+                        this.calcBuffer(i - 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i - 1][j + 1].getxPixel(), blocks[i - 1][j + 1].getyPixel());
+                        blocks[i - 1][j + 1] = mineBlock1;
+                        blocks[i - 1][j + 1].MouseClick();
+
+                        buffers[i - 1][j + 2] = minePosition;
+                        this.calcBuffer(i - 1, j + 2);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i - 1][j + 2].getxPixel(), blocks[i - 1][j + 2].getyPixel());
+                        blocks[i - 1][j + 2] = mineBlock2;
+                        blocks[i - 1][j + 2].MouseClick();
                     }
                 }
             }
@@ -332,7 +431,7 @@ public class BlockStruct {
 
         return;
     }
-    public void check111(int i, int j){
+    public void check111(int i, int j) throws AWTException {
         if (buffers[i][j] != 1) return;
 
         ArrayList<Integer> i_list = new ArrayList<>();
@@ -356,6 +455,12 @@ public class BlockStruct {
                             && (i + 3 > 15 || buffers[i + 3][j] == minePosition))){
 
                         // click mouse i+1 j+1
+                        buffers[i + 1][j + 1] = minePosition;
+                        this.calcBuffer(i + 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j + 1].getxPixel(), blocks[i + 1][j + 1].getyPixel());
+                        blocks[i + 1][j + 1] = mineBlock1;
+                        blocks[i + 1][j + 1].MouseClick();
+
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((i - 1 < 0 || i + 3 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
@@ -364,6 +469,12 @@ public class BlockStruct {
                             && (i + 3 > 15 || buffers[i + 3][j] == minePosition))){
 
                         // click mouse i+1 j-1
+                        buffers[i + 1][j - 1] = minePosition;
+                        this.calcBuffer(i + 1, j - 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j - 1].getxPixel(), blocks[i + 1][j - 1].getyPixel());
+                        blocks[i + 1][j - 1] = mineBlock1;
+                        blocks[i + 1][j - 1].MouseClick();
+
                     }
                 }
             }
@@ -384,6 +495,12 @@ public class BlockStruct {
                             && (j + 3 > 15 || buffers[i][j + 3] == minePosition))){
 
                         // click mouse i+1 j+1
+                        buffers[i + 1][j + 1] = minePosition;
+                        this.calcBuffer(i + 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j + 1].getxPixel(), blocks[i + 1][j + 1].getyPixel());
+                        blocks[i + 1][j + 1] = mineBlock1;
+                        blocks[i + 1][j + 1].MouseClick();
+
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((j - 1 < 0 || j + 3 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
@@ -392,6 +509,12 @@ public class BlockStruct {
                             && (j + 3 > 15 || buffers[i][j + 3] == minePosition))){
 
                         // click mouse i-1 j+1
+                        buffers[i - 1][j + 1] = minePosition;
+                        this.calcBuffer(i - 1, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i - 1][j + 1].getxPixel(), blocks[i - 1][j + 1].getyPixel());
+                        blocks[i - 1][j + 1] = mineBlock1;
+                        blocks[i - 1][j + 1].MouseClick();
+
                     }
                 }
             }
@@ -399,7 +522,7 @@ public class BlockStruct {
 
         return;
     }
-    public void check1111(int i, int j){
+    public void check1111(int i, int j) throws AWTException {
         if (buffers[i][j] != 1) return;
 
         ArrayList<Integer> i_list = new ArrayList<>();
@@ -425,6 +548,18 @@ public class BlockStruct {
                             && (i + 4 > 15 || buffers[i + 4][j] == minePosition))){
 
                         // click mouse i j+1, i+3 j+1
+                        buffers[i][j + 1] = minePosition;
+                        this.calcBuffer(i, j + 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i][j + 1].getxPixel(), blocks[i][j + 1].getyPixel());
+                        blocks[i][j + 1] = mineBlock1;
+                        blocks[i][j + 1].MouseClick();
+
+                        buffers[i + 3][j + 1] = minePosition;
+                        this.calcBuffer(i + 3, j + 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 3][j + 1].getxPixel(), blocks[i + 3][j + 1].getyPixel());
+                        blocks[i + 3][j + 1] = mineBlock2;
+                        blocks[i + 3][j + 1].MouseClick();
+
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((i - 1 < 0 || i + 4 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
@@ -433,6 +568,18 @@ public class BlockStruct {
                             && (i + 4 > 15 || buffers[i + 4][j] == minePosition))){
 
                         // click mouse i j-1, i+3 j-1
+                        buffers[i][j - 1] = minePosition;
+                        this.calcBuffer(i, j - 1);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i][j - 1].getxPixel(), blocks[i][j - 1].getyPixel());
+                        blocks[i][j - 1] = mineBlock1;
+                        blocks[i][j - 1].MouseClick();
+
+                        buffers[i + 3][j - 1] = minePosition;
+                        this.calcBuffer(i + 3, j - 1);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 3][j - 1].getxPixel(), blocks[i + 3][j - 1].getyPixel());
+                        blocks[i + 3][j - 1] = mineBlock2;
+                        blocks[i + 3][j - 1].MouseClick();
+
                     }
                 }
             }
@@ -455,6 +602,18 @@ public class BlockStruct {
                             && (j + 4 > 15 || buffers[i][j + 4] == minePosition))){
 
                         // click mouse i+1 j, i+1 j+3
+                        buffers[i + 1][j] = minePosition;
+                        this.calcBuffer(i + 1, j);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i + 1][j].getxPixel(), blocks[i + 1][j].getyPixel());
+                        blocks[i + 1][j] = mineBlock1;
+                        blocks[i + 1][j].MouseClick();
+
+                        buffers[i + 1][j + 3] = minePosition;
+                        this.calcBuffer(i + 1, j + 3);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i + 1][j + 3].getxPixel(), blocks[i + 1][j + 3].getyPixel());
+                        blocks[i + 1][j + 3] = mineBlock2;
+                        blocks[i + 1][j + 3].MouseClick();
+
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
                     if ((j - 1 < 0 || j + 4 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
@@ -463,6 +622,18 @@ public class BlockStruct {
                             && (j + 4 > 15 || buffers[i][j + 4] == minePosition))){
 
                         // click mouse i-1 j, i-1 j+3
+                        buffers[i - 1][j] = minePosition;
+                        this.calcBuffer(i - 1, j);
+                        MineBlock mineBlock1 = new MineBlock(blocks[i - 1][j].getxPixel(), blocks[i - 1][j].getyPixel());
+                        blocks[i - 1][j] = mineBlock1;
+                        blocks[i - 1][j].MouseClick();
+
+                        buffers[i - 1][j + 3] = minePosition;
+                        this.calcBuffer(i - 1, j + 3);
+                        MineBlock mineBlock2 = new MineBlock(blocks[i - 1][j + 3].getxPixel(), blocks[i - 1][j + 3].getyPixel());
+                        blocks[i - 1][j + 3] = mineBlock2;
+                        blocks[i - 1][j + 3].MouseClick();
+
                     }
                 }
             }

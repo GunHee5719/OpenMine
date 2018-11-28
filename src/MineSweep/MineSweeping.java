@@ -21,7 +21,6 @@ public class MineSweeping {
             for (int i = 0; i < 16; i++){
                 for (int j = 0; j < 30; j++){
                     this.block_map.findMine(i, j);
-                    this.block_map.calcBuffer(i, j);
                 }
             }
 
