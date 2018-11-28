@@ -49,7 +49,7 @@ public class ImageProcessing {
         int width = image.getWidth();
         int height = image.getHeight();
 
-        // create binary image
+        // create binary image (Multiband thresholding)
         int[][] binarized = new int[width][height];
 
         int rgb, red, green, blue, threshold;
@@ -59,9 +59,9 @@ public class ImageProcessing {
                 red = (rgb & 0xFF0000) >> 16;
                 green = (rgb & 0x00FF00) >> 8;
                 blue = rgb & 0x0000FF;
-                threshold = 64;
+                threshold = 128;
 
-                if (red + green + blue < threshold * 3) {
+                if (red < threshold && green < threshold && blue < threshold) {
                     binarized[x][y] = 0x00;
                 }
                 else {
