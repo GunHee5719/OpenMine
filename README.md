@@ -15,7 +15,7 @@
  - JNA 5.1.0
   > https://github.com/java-native-access/jna
   
- - Java JDK 11.0.11
+ - Java JDK 11.0.1
   > https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
   
  - IntelliJ IDE
