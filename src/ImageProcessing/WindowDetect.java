@@ -1,9 +1,13 @@
 package ImageProcessing;
 
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -13,10 +17,14 @@ import javax.swing.JLabel;
 
 public class WindowDetect {
 
-    public static void main(String[] args) {
-        // Test code
-        String windowName = "지뢰 찾기";
+    private static Rectangle regionOfInterest = null;
+    private static BufferedImage capturedScreen = null;
+    private static int columns, rows;
+    private static double blockWidth, blockHeight;
+    private static String windowName = "지뢰 찾기";
 
+    // Test code
+    public static void main(String[] args) {
         try {
             JFrame frame = new JFrame(windowName);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,8 +39,7 @@ public class WindowDetect {
             e.printStackTrace();
         }
 
-        BufferedImage capturedScreen = WindowCapture.captureWindow(windowName);
-        if (capturedScreen == null) {
+        if (initWindowDetect() != 0) {
             return;
         }
 
@@ -42,56 +49,151 @@ public class WindowDetect {
         frame.pack();
         frame.setVisible(true);
 
-        List<ImageProcessing.Point> corners = ImageProcessing.HarrisCorner(capturedScreen);
+        BufferedImage tmp = new BufferedImage(
+                capturedScreen.getColorModel(),
+                capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
+                capturedScreen.getColorModel().isAlphaPremultiplied(),
+                null); // clone capturedScreen
+        ImageProcessing.drawRectangle(tmp, regionOfInterest, 0xFFFF00);
 
-        int width = capturedScreen.getWidth();
-        int height = capturedScreen.getHeight();
-
-        boolean[][] map = new boolean[width][height];
-        BufferedImage tmp = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-
-        int[] countVertical = new int[width];
-        int[] countHorizontal = new int[height];
-
-        corners.forEach((point) -> {
-            map[point.x][point.y] = true;
-            countVertical[point.x]++;
-            countHorizontal[point.y]++;
-            tmp.setRGB(point.x, point.y, 0xFFFFFF);
-        });
-
-        int[] countVerticalBlurred = new int[width];
-        int paddingSize = 2;
-        for (int i = 0; i < width; i++) {
-            int sum = 0;
-            for (int j = i - paddingSize; j <= i + paddingSize; j++) {
-                if (i - paddingSize >= 0 && i + paddingSize < width) {
-                    sum += countVertical[j];
-                }
-            }
-            countVerticalBlurred[i] = sum / (paddingSize * 2 + 1);
-        }
-
-
-        boolean increasing = false;
-        for (int i = 1; i < width; i++) {
-            if (increasing && countVerticalBlurred[i] < countVerticalBlurred[i - 1]) {
-                System.out.println("countVerticalBlurred[" + (i - 1) + "] = " + countVerticalBlurred[i - 1]);
-                increasing = false;
-            }
-            else if (countVerticalBlurred[i] > countVerticalBlurred[i - 1]) {
-                increasing = true;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < columns; x++) {
+                ImageProcessing.mark(tmp, getBlockPosition(x, y), 0xFF0000);
             }
         }
 
-        frame = new JFrame("Result: " + windowName);
+        frame = new JFrame("Detected: " + windowName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new JLabel(new ImageIcon(tmp)));
         frame.pack();
         frame.setVisible(true);
+    }
 
-        System.out.println(corners.size() + " corner(s) detected");
-        // End of Test code
+    public static int initWindowDetect() {
+        capturedScreen = WindowCapture.captureWindow(windowName);
+        if (capturedScreen == null) {
+            return 1;
+        }
+
+        int[][] binarized = ImageProcessing.Binarize(capturedScreen);
+
+        List<Rectangle> rectangles = ImageProcessing.Labeling(binarized);
+        int size = 0;
+        for (int i = 0; i < rectangles.size(); i++) {
+            Rectangle rectangle = rectangles.get(i);
+            if (size < rectangle.width * rectangle.height) {
+                size = rectangle.width * rectangle.height;
+                regionOfInterest = rectangle;
+            }
+        }
+
+        columns = countVerticalLines(binarized);
+        rows = countHorizontalLines(binarized);
+        blockWidth = (double)regionOfInterest.width / columns;
+        blockHeight = (double)regionOfInterest.height / rows;
+
+        // if block is not square
+        if (blockWidth / blockHeight > 1.02) {
+            blockHeight = blockWidth;
+            rows = (int)(regionOfInterest.height / blockHeight + 0.5); // round
+            blockHeight = (double)regionOfInterest.height / rows;
+        } else if (blockHeight / blockWidth > 1.02) {
+            blockWidth = blockHeight;
+            columns = (int)(regionOfInterest.width / blockWidth + 0.5); // round
+            blockWidth = (double)regionOfInterest.width / columns;
+        }
+
+        // Debug
+        System.out.println("Region of Interest: " + regionOfInterest.width + " x " + regionOfInterest.height + " pixels");
+        System.out.println("columns: " + columns);
+        System.out.println("rows: " + rows);
+        System.out.println("block size: " + String.format("%.2f", blockWidth) + " x " + String.format("%.2f", blockHeight) + " pixels");
+
+        return 0;
+    }
+
+    public static Point getBlockPosition(int x, int y) {
+        return new Point((int)(regionOfInterest.x + blockWidth * (x + 0.5)), (int)(regionOfInterest.y + blockHeight * (y + 0.5)));
+    }
+
+    public static int getColumns() {
+        return columns;
+    }
+
+    public static int getRows() {
+        return rows;
+    }
+
+    private static int countHorizontalLines(int[][] binarized) {
+        HashMap<Integer, Integer> counts = new HashMap<Integer, Integer>();
+        boolean isBlack = false;
+
+        for (int x = regionOfInterest.x; x < regionOfInterest.x + regionOfInterest.width; x++) {
+            isBlack = binarized[x][regionOfInterest.y] == 0;
+            int count = 0;
+            for (int y = regionOfInterest.y; y < regionOfInterest.y + regionOfInterest.height; y++) {
+                if (isBlack && binarized[x][y] == 0xFF) {
+                    count++;
+                    isBlack = false;
+                } else if (!isBlack && binarized[x][y] == 0) {
+                    isBlack = true;
+                }
+            }
+            if (counts.containsKey(count)) {
+                counts.replace(count, counts.get(count) + 1);
+            } else {
+                counts.put(count, 1);
+            }
+        }
+
+        int maxKey = 0;
+        int maxValue = 0;
+        Iterator<Integer> iterator = counts.keySet().iterator();
+        while (iterator.hasNext()) {
+            int key = iterator.next();
+            if (maxValue < counts.get(key)) {
+                maxKey = key;
+                maxValue = counts.get(key);
+            }
+        }
+
+        return maxKey;
+    }
+
+    private static int countVerticalLines(int[][] binarized) {
+        HashMap<Integer, Integer> counts = new HashMap<Integer, Integer>();
+        boolean isBlack = false;
+
+        for (int y = regionOfInterest.y; y < regionOfInterest.y + regionOfInterest.height; y++) {
+            isBlack = binarized[regionOfInterest.x][y] == 0;
+            int count = 0;
+            for (int x = regionOfInterest.x; x < regionOfInterest.x + regionOfInterest.width; x++) {
+                if (isBlack && binarized[x][y] == 0xFF) {
+                    count++;
+                    isBlack = false;
+                } else if (!isBlack && binarized[x][y] == 0) {
+                    isBlack = true;
+                }
+            }
+            if (counts.containsKey(count)) {
+                counts.replace(count, counts.get(count) + 1);
+            } else {
+                counts.put(count, 1);
+            }
+        }
+
+        int maxKey = 0;
+        int maxValue = 0;
+        Iterator<Integer> iterator = counts.keySet().iterator();
+        while (iterator.hasNext()) {
+            int key = iterator.next();
+            if (maxValue < counts.get(key)) {
+                maxKey = key;
+                maxValue = counts.get(key);
+            }
+        }
+
+        return maxKey;
     }
 
 }
