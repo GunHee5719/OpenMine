@@ -25,6 +25,7 @@ public class WindowDetect {
 
     // Test code
     public static void main(String[] args) {
+        // create test window
         try {
             JFrame frame = new JFrame(windowName);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,16 +40,19 @@ public class WindowDetect {
             e.printStackTrace();
         }
 
+        // initialize
         if (initWindowDetect() != 0) {
             return;
         }
 
+        // show screen capture result
         JFrame frame = new JFrame("Captured: " + windowName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new JLabel(new ImageIcon(capturedScreen)));
         frame.pack();
         frame.setVisible(true);
 
+        // show processing result
         BufferedImage tmp = new BufferedImage(
                 capturedScreen.getColorModel(),
                 capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
