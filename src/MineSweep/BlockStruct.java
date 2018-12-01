@@ -6,6 +6,7 @@ import BlockData.NoneBlock;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static MineSweep.Main.*;
 
@@ -239,7 +240,7 @@ public class BlockStruct {
                 j_list.add(j);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((buffers[i][j + 1] == minePosition || buffers[i][j + 1] == nonePosition)
+                    if ((j + 1) < 30 && (buffers[i][j + 1] == minePosition || buffers[i][j + 1] == nonePosition)
                             && (buffers[i + 2][j + 1] == minePosition || buffers[i + 2][j + 1] == nonePosition)){
 
                         // click mouse i j+1, i+2 j+1
@@ -256,7 +257,7 @@ public class BlockStruct {
                         blocks[i + 2][j + 1].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((buffers[i][j - 1] == minePosition || buffers[i][j - 1] == nonePosition)
+                    if ((j - 1) >= 0 && (buffers[i][j - 1] == minePosition || buffers[i][j - 1] == nonePosition)
                             && (buffers[i + 2][j - 1] == minePosition || buffers[i + 2][j - 1] == nonePosition)){
 
                         // click mouse i j-1, i+2 j-1
@@ -285,7 +286,7 @@ public class BlockStruct {
                 j_list.add(j + 2);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((buffers[i + 1][j] == minePosition || buffers[i + 1][j] == nonePosition)
+                    if ((i + 1) < 16 && (buffers[i + 1][j] == minePosition || buffers[i + 1][j] == nonePosition)
                             && (buffers[i + 1][j + 2] == minePosition || buffers[i + 1][j + 2] == nonePosition)){
 
                         // click mouse i+1 j, i+1 j+2
@@ -302,7 +303,7 @@ public class BlockStruct {
                         blocks[i + 1][j + 2].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((buffers[i - 1][j] == minePosition || buffers[i - 1][j] == nonePosition)
+                    if ((i - 1) >= 0 && (buffers[i - 1][j] == minePosition || buffers[i - 1][j] == nonePosition)
                             && (buffers[i - 1][j + 2] == minePosition || buffers[i - 1][j + 2] == nonePosition)){
 
                         // click mouse i-1 j, i-1 j+2
@@ -344,7 +345,7 @@ public class BlockStruct {
                 j_list.add(j);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((buffers[i + 1][j + 1] == minePosition || buffers[i + 1][j + 1] == nonePosition)
+                    if ((j + 1) < 30 && (buffers[i + 1][j + 1] == minePosition || buffers[i + 1][j + 1] == nonePosition)
                             && (buffers[i + 2][j + 1] == minePosition || buffers[i + 2][j + 1] == nonePosition)){
 
                         // click mouse i+1 j+1, i+2 j+1
@@ -361,7 +362,7 @@ public class BlockStruct {
                         blocks[i + 2][j + 1].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((buffers[i + 1][j - 1] == minePosition || buffers[i + 1][j - 1] == nonePosition)
+                    if ((j - 1) >= 0 && (buffers[i + 1][j - 1] == minePosition || buffers[i + 1][j - 1] == nonePosition)
                             && (buffers[i + 2][j - 1] == minePosition || buffers[i + 2][j - 1] == nonePosition)){
 
                         // click mouse i+1 j-1, i+2 j-1
@@ -392,7 +393,7 @@ public class BlockStruct {
                 j_list.add(j + 3);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((buffers[i + 1][j + 1] == minePosition || buffers[i + 1][j + 1] == nonePosition)
+                    if ((i + 1) < 16 && (buffers[i + 1][j + 1] == minePosition || buffers[i + 1][j + 1] == nonePosition)
                             && (buffers[i + 1][j + 2] == minePosition || buffers[i + 1][j + 2] == nonePosition)){
 
                         // click mouse i+1 j+1, i+1 j+2
@@ -409,7 +410,7 @@ public class BlockStruct {
                         blocks[i + 1][j + 2].MouseClick();
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((buffers[i - 1][j + 1] == minePosition || buffers[i - 1][j + 1] == nonePosition)
+                    if ((i - 1) >= 0 && (buffers[i - 1][j + 1] == minePosition || buffers[i - 1][j + 1] == nonePosition)
                             && (buffers[i - 1][j + 2] == minePosition || buffers[i - 1][j + 2] == nonePosition)){
 
                         // click mouse i-1 j+1, i-1 j+2
@@ -449,7 +450,7 @@ public class BlockStruct {
                 j_list.add(j);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((i - 1 < 0 || i + 3 > 15) || ((buffers[i - 1][j + 1] != completeMineSweep && buffers[i - 1][j + 1] != nonePosition)
+                    if ((j + 1) < 30 && (i - 1 < 0 || i + 3 > 15) || ((buffers[i - 1][j + 1] != completeMineSweep && buffers[i - 1][j + 1] != nonePosition)
                             && (buffers[i + 3][j + 1] != completeMineSweep && buffers[i + 3][j + 1] != nonePosition)
                             && (i - 1 < 0 || buffers[i - 1][j] == minePosition)
                             && (i + 3 > 15 || buffers[i + 3][j] == minePosition))){
@@ -463,7 +464,7 @@ public class BlockStruct {
 
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((i - 1 < 0 || i + 3 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
+                    if ((j - 1) >= 0 && (i - 1 < 0 || i + 3 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
                             && (buffers[i + 3][j - 1] != completeMineSweep && buffers[i + 3][j - 1] != nonePosition)
                             && (i - 1 < 0 || buffers[i - 1][j] == minePosition)
                             && (i + 3 > 15 || buffers[i + 3][j] == minePosition))){
@@ -489,7 +490,7 @@ public class BlockStruct {
                 j_list.add(j + 2);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((j - 1 < 0 || j + 3 > 15) || ((buffers[i + 1][j - 1] != completeMineSweep && buffers[i + 1][j - 1] != nonePosition)
+                    if ((i + 1) < 16 && (j - 1 < 0 || j + 3 > 29) || ((buffers[i + 1][j - 1] != completeMineSweep && buffers[i + 1][j - 1] != nonePosition)
                             && (buffers[i + 1][j + 3] != completeMineSweep && buffers[i + 1][j + 3] != nonePosition)
                             && (j - 1 < 0 || buffers[i][j - 1] == minePosition)
                             && (j + 3 > 15 || buffers[i][j + 3] == minePosition))){
@@ -503,7 +504,7 @@ public class BlockStruct {
 
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((j - 1 < 0 || j + 3 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
+                    if ((i - 1) >= 0 && (j - 1 < 0 || j + 3 > 29) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
                             && (buffers[i - 1][j + 3] != completeMineSweep && buffers[i - 1][j + 3] != nonePosition)
                             && (j - 1 < 0 || buffers[i][j - 1] == minePosition)
                             && (j + 3 > 15 || buffers[i][j + 3] == minePosition))){
@@ -542,7 +543,7 @@ public class BlockStruct {
                 j_list.add(j);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((i - 1 < 0 || i + 4 > 15) || ((buffers[i - 1][j + 1] != completeMineSweep && buffers[i - 1][j + 1] != nonePosition)
+                    if ((j + 1) < 30 && (i - 1 < 0 || i + 4 > 15) || ((buffers[i - 1][j + 1] != completeMineSweep && buffers[i - 1][j + 1] != nonePosition)
                             && (buffers[i + 4][j + 1] != completeMineSweep && buffers[i + 4][j + 1] != nonePosition)
                             && (i - 1 < 0 || buffers[i - 1][j] == minePosition)
                             && (i + 4 > 15 || buffers[i + 4][j] == minePosition))){
@@ -562,7 +563,7 @@ public class BlockStruct {
 
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((i - 1 < 0 || i + 4 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
+                    if ((j - 1) >= 0 && (i - 1 < 0 || i + 4 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
                             && (buffers[i + 4][j - 1] != completeMineSweep && buffers[i + 4][j - 1] != nonePosition)
                             && (i - 1 < 0 || buffers[i - 1][j] == minePosition)
                             && (i + 4 > 15 || buffers[i + 4][j] == minePosition))){
@@ -596,7 +597,7 @@ public class BlockStruct {
                 j_list.add(j + 3);
 
                 if (checkCompleteBlock(i_list, j_list, direction) == 1){
-                    if ((j - 1 < 0 || j + 4 > 15) || ((buffers[i + 1][j - 1] != completeMineSweep && buffers[i + 1][j - 1] != nonePosition)
+                    if ((i + 1) < 16 && (j - 1 < 0 || j + 4 > 30) || ((buffers[i + 1][j - 1] != completeMineSweep && buffers[i + 1][j - 1] != nonePosition)
                             && (buffers[i + 1][j + 4] != completeMineSweep && buffers[i + 1][j + 4] != nonePosition)
                             && (j - 1 < 0 || buffers[i][j - 1] == minePosition)
                             && (j + 4 > 15 || buffers[i][j + 4] == minePosition))){
@@ -616,7 +617,7 @@ public class BlockStruct {
 
                     }
                 } else if (checkCompleteBlock(i_list, j_list, direction) == 2){
-                    if ((j - 1 < 0 || j + 4 > 15) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
+                    if ((i - 1) >= 0 && (j - 1 < 0 || j + 4 > 30) || ((buffers[i - 1][j - 1] != completeMineSweep && buffers[i - 1][j - 1] != nonePosition)
                             && (buffers[i - 1][j + 4] != completeMineSweep && buffers[i - 1][j + 4] != nonePosition)
                             && (j - 1 < 0 || buffers[i][j - 1] == minePosition)
                             && (j + 4 > 15 || buffers[i][j + 4] == minePosition))){
@@ -640,6 +641,23 @@ public class BlockStruct {
         }
 
         return;
+    }
+
+    public void randomClickNoneBlock() throws AWTException {
+        boolean clickFlag = true;
+
+        while (clickFlag){
+            Random rand_x = new Random();
+            Random rand_y = new Random();
+
+            int x = rand_x.nextInt(16);
+            int y = rand_y.nextInt(30);
+
+            if (buffers[x][y] == nonePosition){
+                blocks[x][y].MouseClick();
+                clickFlag = false;
+            }
+        }
     }
 
 

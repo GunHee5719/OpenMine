@@ -1,5 +1,7 @@
 package MineSweep;
 
+import java.awt.*;
+
 public class MineSweeping {
 
     // define variable to need
@@ -10,7 +12,7 @@ public class MineSweeping {
         this.block_map = block_map;
     }
 
-    public void mineSweeping(){
+    public void mineSweeping() throws AWTException {
         boolean gameEndFlag = true;
 
         while (gameEndFlag){
@@ -33,7 +35,7 @@ public class MineSweeping {
                 }
             }
 
-
+            this.block_map.randomClickNoneBlock();
         }
 
     }
