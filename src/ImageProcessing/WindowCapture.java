@@ -23,8 +23,15 @@ public class WindowCapture {
 
         RECT clientArea = new RECT();
         POINT clientOrigin = new POINT();
-        User32.instance.ShowWindowAsync(hWnd, User32.SW_RESTORE);
+        User32.instance.ShowWindowAsync(hWnd, User32.SW_SHOW);
         User32.instance.SetForegroundWindow(hWnd);
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         User32.instance.GetClientRect(hWnd, clientArea);
         User32.instance.ClientToScreen(hWnd, clientOrigin);
 
