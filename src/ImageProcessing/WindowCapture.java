@@ -47,7 +47,7 @@ public class WindowCapture {
     }
 
     private static interface User32 extends StdCallLibrary {
-        public static final int SW_RESTORE = 9;
+        //public static final int SW_RESTORE = 9;
         public static final int SW_SHOW = 5;
 
         @SuppressWarnings("deprecation")
