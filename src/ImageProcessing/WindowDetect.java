@@ -26,105 +26,105 @@ public class WindowDetect {
     private static String windowName = "지뢰 찾기";
 
     // Test code
-    public static void main(String[] args) {
-		/* create test window
-        try {
-            JFrame frame = new JFrame(windowName);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(new JLabel(new ImageIcon(ImageIO.read(new File("minesweeper_window.png")))));
-			frame.setIconImage(Toolkit.getDefaultToolkit().getImage("minesweeper_icon.png"));
-	        frame.pack();
-	        frame.setVisible(true);
-	        Thread.sleep(500);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		*/
-
-        // initialize
-        if (initWindowDetect() != 0) {
-            return;
-        }
-
-        // show screen capture result
-        ImageProcessing.show(capturedScreen, "Captured: " + windowName);
-
-        // show processing result
-        BufferedImage tmp = new BufferedImage(
-                capturedScreen.getColorModel(),
-                capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
-                capturedScreen.getColorModel().isAlphaPremultiplied(),
-                null); // clone capturedScreen
-        ImageProcessing.drawRectangle(tmp, regionOfInterest, 0xFFFF00);
-
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < columns; x++) {
-                ImageProcessing.mark(tmp, getBlockPosition(x, y), 0xFF0000);
-            }
-        }
-
-        ImageProcessing.show(tmp, "Detected: " + windowName);
-
-        // refresh
-        while (true) {
-            try {
-                // wait for enter key
-                System.out.println("Press Enter to refresh...");
-                System.in.read();
-                System.in.read();
-            } catch (IOException e) {
-            }
-            System.out.println("Refresh");
-
-			/* create test window
-	        try {
-	            JFrame frame = new JFrame(windowName);
-	            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.add(new JLabel(new ImageIcon(ImageIO.read(new File("test.png")))));
-		        frame.pack();
-		        frame.setVisible(true);
-		        Thread.sleep(500);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	        */
-
-            HashMap<Point, Integer> changedBlocks = refresh();
-
-            // draw detected rectangles
-            tmp = new BufferedImage(
-                    capturedScreen.getColorModel(),
-                    capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
-                    capturedScreen.getColorModel().isAlphaPremultiplied(),
-                    null); // clone capturedScreen
-
-            final int colors[] = {0x880015, 0xED1C24, 0xFF7F27, 0xFFF200, 0x22B14C, 0x00A2E8, 0x3F48CC, 0xA349A4, 0xFFFFFF, 0x7F7F7F};
-            for (Map.Entry<Point, Integer> entry : changedBlocks.entrySet()) {
-                int color = colors[entry.getValue()];
-
-                Rectangle targetRectangle = getBlockRectangle(entry.getKey());
-                targetRectangle.x += 2;
-                targetRectangle.y += 2;
-                targetRectangle.width -= 4;
-                targetRectangle.height -= 4;
-                ImageProcessing.drawRectangle(tmp, targetRectangle, color);
-
-                // additional rectangle
-                targetRectangle.x += 1;
-                targetRectangle.y += 1;
-                targetRectangle.width -= 2;
-                targetRectangle.height -= 2;
-                ImageProcessing.drawRectangle(tmp, targetRectangle, color);
-            }
-
-            ImageProcessing.show(tmp, "ReCaptured: " + windowName);
-            System.out.println(changedBlocks.size() + " blocks has been changed");
-        }
-    }
+//    public static void main(String[] args) {
+//		/* create test window
+//        try {
+//            JFrame frame = new JFrame(windowName);
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			frame.add(new JLabel(new ImageIcon(ImageIO.read(new File("minesweeper_window.png")))));
+//			frame.setIconImage(Toolkit.getDefaultToolkit().getImage("minesweeper_icon.png"));
+//	        frame.pack();
+//	        frame.setVisible(true);
+//	        Thread.sleep(500);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		*/
+//
+//        // initialize
+//        if (initWindowDetect() != 0) {
+//            return;
+//        }
+//
+//        // show screen capture result
+//        ImageProcessing.show(capturedScreen, "Captured: " + windowName);
+//
+//        // show processing result
+//        BufferedImage tmp = new BufferedImage(
+//                capturedScreen.getColorModel(),
+//                capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
+//                capturedScreen.getColorModel().isAlphaPremultiplied(),
+//                null); // clone capturedScreen
+//        ImageProcessing.drawRectangle(tmp, regionOfInterest, 0xFFFF00);
+//
+//        for (int y = 0; y < rows; y++) {
+//            for (int x = 0; x < columns; x++) {
+//                ImageProcessing.mark(tmp, getBlockPosition(x, y), 0xFF0000);
+//            }
+//        }
+//
+//        ImageProcessing.show(tmp, "Detected: " + windowName);
+//
+//        // refresh
+//        while (true) {
+//            try {
+//                // wait for enter key
+//                System.out.println("Press Enter to refresh...");
+//                System.in.read();
+//                System.in.read();
+//            } catch (IOException e) {
+//            }
+//            System.out.println("Refresh");
+//
+//			/* create test window
+//	        try {
+//	            JFrame frame = new JFrame(windowName);
+//	            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//				frame.add(new JLabel(new ImageIcon(ImageIO.read(new File("test.png")))));
+//		        frame.pack();
+//		        frame.setVisible(true);
+//		        Thread.sleep(500);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//	        */
+//
+//            HashMap<Point, Integer> changedBlocks = refresh();
+//
+//            // draw detected rectangles
+//            tmp = new BufferedImage(
+//                    capturedScreen.getColorModel(),
+//                    capturedScreen.copyData(capturedScreen.getRaster().createCompatibleWritableRaster()),
+//                    capturedScreen.getColorModel().isAlphaPremultiplied(),
+//                    null); // clone capturedScreen
+//
+//            final int colors[] = {0x880015, 0xED1C24, 0xFF7F27, 0xFFF200, 0x22B14C, 0x00A2E8, 0x3F48CC, 0xA349A4, 0xFFFFFF, 0x7F7F7F};
+//            for (Map.Entry<Point, Integer> entry : changedBlocks.entrySet()) {
+//                int color = colors[entry.getValue()];
+//
+//                Rectangle targetRectangle = getBlockRectangle(entry.getKey());
+//                targetRectangle.x += 2;
+//                targetRectangle.y += 2;
+//                targetRectangle.width -= 4;
+//                targetRectangle.height -= 4;
+//                ImageProcessing.drawRectangle(tmp, targetRectangle, color);
+//
+//                // additional rectangle
+//                targetRectangle.x += 1;
+//                targetRectangle.y += 1;
+//                targetRectangle.width -= 2;
+//                targetRectangle.height -= 2;
+//                ImageProcessing.drawRectangle(tmp, targetRectangle, color);
+//            }
+//
+//            ImageProcessing.show(tmp, "ReCaptured: " + windowName);
+//            System.out.println(changedBlocks.size() + " blocks has been changed");
+//        }
+//    }
 
     public static int initWindowDetect() {
         // capture initial window

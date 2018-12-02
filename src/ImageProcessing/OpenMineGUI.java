@@ -2,6 +2,8 @@ package ImageProcessing;
 
 import BlockData.Block;
 import BlockData.NoneBlock;
+import MineSweep.BlockStruct;
+import MineSweep.MineSweeping;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,11 +29,7 @@ public class OpenMineGUI implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         // 화면 인식하는 방향으로 이어줘야함. 이전에 레이아웃 위치 지정도 다시 해야 함!
-        Block a = new NoneBlock(1800,10);
-        try {
-            ((NoneBlock) a).MouseClick();
-        } catch (AWTException e1) {
-            e1.printStackTrace();
-        }
+        BlockStruct bs = BlockStruct.getInstance();
+        MineSweeping start = new MineSweeping(bs);
     }
 }
