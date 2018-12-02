@@ -24,7 +24,9 @@ public class MineSweeping {
 
         WindowDetect wd = new WindowDetect();
         wd.initWindowDetect();
+        block_map.init(wd);
 
+        int check = 0;
         while (gameEndFlag){
             // Window update and block map update
             // check game end state screen
@@ -36,15 +38,16 @@ public class MineSweeping {
 
                 if(state == 0){
                     Point pixelLocation = wd.getBlockPosition(x,y);
-                    Block temp = new CompleteBlock(pixelLocation.x,pixelLocation.y);
-                    BlockStruct.getInstance().setBlock(x,y,temp);
+                    Block temp = new CompleteBlock(pixelLocation.y,pixelLocation.x);
+                    block_map.setBlock(y,x,temp);
+                    block_map.setBuffer(y, x, state);
                 }
                 else if(state >0 && state < 9){
                     Point pixelLocation = wd.getBlockPosition(x,y);
-                    Block temp = new NumberBlock(pixelLocation.x,pixelLocation.y,state);
-                    BlockStruct.getInstance().setBlock(x,y,temp);
+                    Block temp = new NumberBlock(pixelLocation.y,pixelLocation.x,state);
+                    block_map.setBlock(y,x,temp);
+                    block_map.setBuffer(y,x,state);
                 }
-
             }
 
             for (int i = 0; i < 16; i++){
@@ -54,14 +57,28 @@ public class MineSweeping {
             }
             for (int i = 0; i < 16; i++){
                 for (int j = 0; j < 30; j++){
-                    this.block_map.check121(i, j);
-                    this.block_map.check1221(i, j);
-                    this.block_map.check111(i, j);
-                    this.block_map.check1111(i, j);
+//                    this.block_map.check121(i, j);
+//                    this.block_map.check1221(i, j);
+//                    this.block_map.check111(i, j);
+//                    this.block_map.check1111(i, j);
                 }
             }
 
-            this.block_map.randomClickNoneBlock();
+            int isChange = 0;
+
+            for (int i = 0; i < 16; i++){
+                for (int j = 0; j < 30; j++){
+                    isChange += this.block_map.calcBuffer(i, j);
+                }
+            }
+
+            System.out.println("@@@@ isChange : "+isChange);
+            if (isChange == 0) this.block_map.randomClickNoneBlock();
+
+            if (check == 2){
+                gameEndFlag = false;
+            }
+            check++;
         }
     }
 }

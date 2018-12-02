@@ -23,5 +23,7 @@ public abstract class Block {
         return yPixel;
     }
 
+    public int getNumber() { return -1; }
+
     abstract public void MouseClick() throws AWTException;
 }

@@ -10,25 +10,28 @@ public class MouseMove {
     }
 
     public void leftClick(int i, int j){
+        System.out.println("좌클릭 : x - " + i + " y - " + j);
         rob.mouseMove(i, j);
         rob.mousePress(InputEvent.BUTTON1_MASK);
         rob.mouseRelease(InputEvent.BUTTON1_MASK);
-        rob.setAutoDelay(100);
+        rob.delay(100);
     }
 
     public void rightClick(int i,int j){
+        System.out.println("우클릭 : x - " + i + " y - " + j);
         rob.mouseMove(i, j);
         rob.mousePress(InputEvent.BUTTON3_MASK);
         rob.mouseRelease(InputEvent.BUTTON3_MASK);
-        rob.setAutoDelay(100);
+        rob.delay(100);
     }
 
     public void allClick(int i, int j){
+        System.out.println("둘다클릭 : x - " + i + " y - " + j);
         rob.mouseMove(i, j);
         rob.mousePress(InputEvent.BUTTON1_MASK);
         rob.mousePress(InputEvent.BUTTON3_MASK);
         rob.mouseRelease(InputEvent.BUTTON1_MASK);
         rob.mouseRelease(InputEvent.BUTTON3_MASK);
-        rob.setAutoDelay(100);
+        rob.delay(100);
     }
 }

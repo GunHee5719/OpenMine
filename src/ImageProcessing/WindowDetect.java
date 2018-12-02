@@ -1,8 +1,7 @@
 package ImageProcessing;
 
-import java.awt.Point;
-import java.awt.Rectangle;
-//import java.awt.Toolkit;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,9 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import javax.imageio.ImageIO;
+//import java.awt.Toolkit;
 //import javax.swing.ImageIcon;
 //import javax.swing.JFrame;
 //import javax.swing.JLabel;
@@ -24,6 +22,7 @@ public class WindowDetect {
     private static int columns, rows;
     private static double blockWidth, blockHeight;
     private static String windowName = "지뢰 찾기";
+    private static int hWnd = 0;
 
     // Test code
 //    public static void main(String[] args) {
@@ -127,8 +126,10 @@ public class WindowDetect {
 //    }
 
     public static int initWindowDetect() {
+        hWnd = WindowCapture.getHWND(windowName);
+
         // capture initial window
-        capturedScreen = WindowCapture.captureWindow(windowName);
+        capturedScreen = WindowCapture.captureWindow(hWnd);
         if (capturedScreen == null) {
             return -1;
         }
@@ -238,7 +239,12 @@ public class WindowDetect {
     }
 
     public static Point getBlockPosition(int x, int y) {
-        return new Point((int) (regionOfInterest.x + blockWidth * (x + 0.5)), (int) (regionOfInterest.y + blockHeight * (y + 0.5)));
+        WindowCapture.POINT windowOrigin = new WindowCapture.POINT();
+        windowOrigin.x = (int) (regionOfInterest.x + blockWidth * (x + 0.5));
+        windowOrigin.y = (int) (regionOfInterest.y + blockHeight * (y + 0.5));
+        WindowCapture.User32.instance.ClientToScreen(hWnd, windowOrigin);
+
+        return new Point(windowOrigin.x, windowOrigin.y);
     }
 
     public static Rectangle getBlockRectangle(Point p) {

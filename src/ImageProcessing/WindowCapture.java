@@ -1,23 +1,28 @@
 package ImageProcessing;
 
-import java.awt.AWTException;
-import java.awt.Rectangle;
-import java.awt.Robot;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
+import com.sun.jna.Structure;
+import com.sun.jna.win32.StdCallLibrary;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
-import com.sun.jna.Native;
-import com.sun.jna.Structure;
-import com.sun.jna.win32.StdCallLibrary;
-
 public class WindowCapture {
 
-    public static BufferedImage captureWindow(String windowName) {
+    public static int getHWND(String windowName) {
+        return User32.instance.FindWindowA(null, windowName);
+    }
 
-        int hWnd = User32.instance.FindWindowA(null, windowName);
+    public static BufferedImage captureWindow(String windowName) {
+        return captureWindow(getHWND(windowName));
+    }
+
+    public static BufferedImage captureWindow(int hWnd) {
         if (hWnd == 0) {
-            System.out.println("Window \"" + windowName + "\" has not found!");
+            System.out.println("Window not found!");
             return null;
         }
 
@@ -46,7 +51,7 @@ public class WindowCapture {
         return capturedScreen;
     }
 
-    private static interface User32 extends StdCallLibrary {
+    public static interface User32 extends StdCallLibrary {
         //public static final int SW_RESTORE = 9;
         public static final int SW_SHOW = 5;
 
@@ -62,6 +67,16 @@ public class WindowCapture {
         boolean GetClientRect(int hWnd, RECT lpRect);
 
         boolean ClientToScreen(int hWnd, POINT lpPoint);
+
+        boolean ScreenToClient(int hWnd, POINT lpPoint);
+
+        interface WNDENUMPROC extends StdCallCallback {
+            boolean callback(Pointer hWnd, Pointer arg);
+        }
+
+        boolean EnumWindows(WNDENUMPROC lpEnumFunc, Pointer arg);
+
+        int GetWindowTextA(Pointer hWnd, byte[] lpString, int nMaxCount);
     }
 
     public static class RECT extends Structure {

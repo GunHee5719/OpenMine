@@ -3,6 +3,7 @@ package MineSweep;
 import BlockData.Block;
 import BlockData.MineBlock;
 import BlockData.NoneBlock;
+import ImageProcessing.WindowDetect;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,17 +12,16 @@ import java.util.Random;
 import static MineSweep.Main.*;
 
 public class BlockStruct {
-    private volatile static BlockStruct instance = null;
-    private Block[][] blocks;
-    private int[][] buffers;
-    private boolean[][] check_buffers;
+    private Block[][] blocks = new Block[16][30];
+    private int[][] buffers = new int[16][30];
+    private boolean[][] check_buffers = new boolean[16][30];
 
-    private BlockStruct(){
-        for (int i = 0; i < 16; i++){
-            for (int j = 0; j < 30; j++){
-                blocks[i][j] = new NoneBlock(i, j);
-            }
-        }
+    public BlockStruct(){
+//        for (int i = 0; i < 16; i++){
+//            for (int j = 0; j < 30; j++){
+//                blocks[i][j] = new NoneBlock(i, j);
+//            }
+//        }
 
         for (int i = 0; i < 16; i++){
             for (int j = 0; j < 30; j++){
@@ -36,21 +36,11 @@ public class BlockStruct {
         }
     }
 
-    public static BlockStruct getInstance(){
-        if (instance == null){
-            synchronized (BlockStruct.class){
-                if (instance == null){
-                    instance = new BlockStruct();
-                }
-            }
-        }
-
-        return instance;
-    }
-    public void init(){
+    public void init(WindowDetect wd){
         for (int i = 0; i < 16; i++){
             for (int j = 0; j < 30; j++){
-                blocks[i][j] = new NoneBlock(i, j);
+                Point pixelLocation = wd.getBlockPosition(j,i);
+                blocks[i][j] = new NoneBlock(pixelLocation.x, pixelLocation.y);
             }
         }
 
@@ -68,11 +58,11 @@ public class BlockStruct {
     }
 
     public Block getBlock(int i, int j) {
-        if (i < 0 || i > 16){
+        if (i < 0 || i > 15){
             System.out.println("BlockStruct getBlock out of Index: i");
             return null;
         }
-        if (j < 0 || j > 30){
+        if (j < 0 || j > 29){
             System.out.println("BlockStruct getBlock out of Index: j");
             return null;
         }
@@ -80,22 +70,22 @@ public class BlockStruct {
         return blocks[i][j];
     }
     public int getBuffer(int i, int j) {
-        if (i < 0 || i > 16){
+        if (i < 0 || i > 15){
             System.out.println("BlockStruct getBlock out of Index: i");
             return Main.Error;
         }
-        if (j < 0 || j > 30){
+        if (j < 0 || j > 29){
             System.out.println("BlockStruct getBlock out of Index: j");
             return Main.Error;
         }
         return buffers[i][j];
     }
     public void setBlock(int i, int j, Block block){
-        if (i < 0 || i > 16){
+        if (i < 0 || i > 15){
             System.out.println("BlockStruct getBlock out of Index: i");
             return;
         }
-        if (j < 0 || j > 30){
+        if (j < 0 || j > 29){
             System.out.println("BlockStruct getBlock out of Index: j");
             return;
         }
@@ -103,11 +93,11 @@ public class BlockStruct {
         this.blocks[i][j] = block;
     }
     public void setBuffer(int i, int j, int buffer){
-        if (i < 0 || i > 16){
+        if (i < 0 || i > 15){
             System.out.println("BlockStruct getBlock out of Index: i");
             return;
         }
-        if (j < 0 || j > 30){
+        if (j < 0 || j > 29){
             System.out.println("BlockStruct getBlock out of Index: j");
             return;
         }
@@ -117,17 +107,34 @@ public class BlockStruct {
 
     // set buffers after finding mine
     // i, j -> mine of position
-    public void calcBuffer(int i, int j){
+    public int calcBuffer(int i, int j){
+
+        int currentBuffer = buffers[i][j];
+        int originBuffer = blocks[i][j].getNumber();
+        int minePosition = 0;
+        int returnValue = 0;
+
+        if (originBuffer == -1) return 0;
+
         for (int x = i - 1; x < i + 2; x++){
             for (int y = j - 1; y < j + 2; y++){
                 if (x < 0 || x > 15) continue;
                 if (y < 0 || y > 29) continue;
+                if (x == i && y == j) continue;
 
-                if (buffers[x][y] == minePosition) continue;
-                if (buffers[x][y] == nonePosition) continue;
-                if (buffers[x][y] == completeMineSweep) continue;
+                if (buffers[x][y] == minePosition) minePosition++;
+            }
+        }
 
-                buffers[x][y]--;
+        if (currentBuffer != originBuffer - minePosition){
+            buffers[i][j] = originBuffer - minePosition;
+            returnValue = 1;
+        }
+
+        for (int x = i - 1; x < i + 2; x++){
+            for (int y = j - 1; y < j + 2; y++){
+                if (x < 0 || x > 15) continue;
+                if (y < 0 || y > 29) continue;
 
                 if (buffers[x][y] == 0){
                     for (int check_x = i - 1; check_x < i + 2; check_x++){
@@ -151,6 +158,8 @@ public class BlockStruct {
                 }
             }
         }
+
+        return returnValue;
     }
 
     public void findMine(int i, int j) throws AWTException {
@@ -184,16 +193,26 @@ public class BlockStruct {
             // click right button of mouse
 
             for (int x = 0; x < click_x.size(); x++){
-                buffers[click_x.get(x)][click_y.get(x)] = minePosition;
-                this.calcBuffer(click_x.get(x), click_y.get(x));
-                MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
-                blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
-                blocks[click_x.get(x)][click_y.get(x)].MouseClick();
+                if (buffers[click_x.get(x)][click_y.get(x)] != minePosition) {
+                    System.out.println("click - x : " + blocks[click_x.get(x)][click_y.get(x)].getxPixel() + " y : " + blocks[click_x.get(x)][click_y.get(x)].getyPixel());
+                    buffers[click_x.get(x)][click_y.get(x)] = minePosition;
+                    this.calcBuffer(click_x.get(x), click_y.get(x));
+                    MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
+                    blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
+                    blocks[click_x.get(x)][click_y.get(x)].MouseClick();
+
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
         if (currentBuffer == remainPosition){
             // click left and right button of mouse
+//            blocks[i][j].MouseClick();
         }
 
         int noneExceptCheckTrue = 0;
@@ -208,11 +227,20 @@ public class BlockStruct {
             for (int x = 0; x < click_x.size(); x++){
                 if (!check_buffers[click_x.get(x)][click_y.get(x)]){
                     // click right button of mouse
-                    buffers[click_x.get(x)][click_y.get(x)] = minePosition;
-                    this.calcBuffer(click_x.get(x), click_y.get(x));
-                    MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
-                    blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
-                    blocks[click_x.get(x)][click_y.get(x)].MouseClick();
+
+                    if (buffers[click_x.get(x)][click_y.get(x)] != minePosition) {
+                        buffers[click_x.get(x)][click_y.get(x)] = minePosition;
+                        this.calcBuffer(click_x.get(x), click_y.get(x));
+                        MineBlock mineBlock = new MineBlock(blocks[click_x.get(x)][click_y.get(x)].getxPixel(), blocks[click_x.get(x)][click_y.get(x)].getyPixel());
+                        blocks[click_x.get(x)][click_y.get(x)] = mineBlock;
+                        blocks[click_x.get(x)][click_y.get(x)].MouseClick();
+
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }

@@ -3,7 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="0fdc9549-7427-4faf-a1e7-b14893e4f924" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/ImageProcessing$RECT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/ImageProcessing$RECT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/ImageProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/ImageProcessing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/MouseMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/MouseMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/OpenMineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/OpenMineGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$POINT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$POINT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$RECT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$RECT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$User32.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture$User32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowCapture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowDetect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/ImageProcessing/WindowDetect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/MineSweep/BlockStruct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/MineSweep/BlockStruct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OpenMine/MineSweep/MineSweeping.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OpenMine/MineSweep/MineSweeping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockData/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockData/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImageProcessing/MouseMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImageProcessing/MouseMove.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImageProcessing/OpenMineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImageProcessing/OpenMineGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MineSweep/BlockStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineSweep/BlockStruct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MineSweep/MineSweeping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MineSweep/MineSweeping.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -13,62 +29,136 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/OpenMine$Main.ic" NAME="Main Coverage Results" MODIFIED="1543741195078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MineSweep.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1141317981">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="50" />
+          <entry key="java" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="50" />
+          <entry key="JAVA" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2136" />
+          <entry key="java" value="4882" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2136" />
+          <entry key="JAVA" value="4882" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MineSweep/MineSweeping.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+            <state relative-caret-position="441">
+              <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#227#228#0" expanded="true" />
-                <element signature="e#269#270#0" expanded="true" />
+                <element signature="e#399#400#0" expanded="true" />
+                <element signature="e#441#442#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MineSweep/BlockStruct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="237" column="29" lean-forward="true" selection-start-line="237" selection-start-column="29" selection-end-line="237" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#BlockStruct#0;class#BlockStruct#0" />
+                <element signature="method#init#0;class#BlockStruct#0" />
+                <element signature="method#getBlock#0;class#BlockStruct#0" />
+                <element signature="method#getBuffer#0;class#BlockStruct#0" />
+                <element signature="method#setBlock#0;class#BlockStruct#0" />
+                <element signature="method#setBuffer#0;class#BlockStruct#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MineSweep/BlockStruct.java">
+        <entry file="file://$PROJECT_DIR$/src/BlockData/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
+            <state relative-caret-position="399">
+              <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BlockData/NumberBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding>
+                <element signature="e#277#278#0" expanded="true" />
+                <element signature="e#306#307#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BlockData/MineBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BlockData/NoneBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ImageProcessing/MouseMove.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +169,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ImageProcessing/OpenMineGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="32" column="50" lean-forward="true" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+            <state relative-caret-position="365">
+              <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,13 +179,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java">
+        <entry file="file://$PROJECT_DIR$/src/MineSweep/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
+            <state relative-caret-position="152">
+              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getBlockRectangle#1;class#WindowDetect#0" />
+                <element signature="e#475#476#0" expanded="true" />
+                <element signature="e#528#529#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,10 +194,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+            <state relative-caret-position="760">
+              <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#337#338#0" expanded="true" />
+                <element signature="e#405#406#0" expanded="true" />
+                <element signature="e#477#478#0" expanded="true" />
+                <element signature="e#534#535#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,6 +220,16 @@
     <findStrings>
       <find>setBlock</find>
       <find>refresh</find>
+      <find>print</find>
+      <find>h</find>
+      <find>이게</find>
+      <find>들으와</find>
+      <find>버퍼 : 0</find>
+      <find>Buffer : 1</find>
+      <find>Buffer2 : 1</find>
+      <find>Buffer2 : 2</find>
+      <find>MineBlock</find>
+      <find>Buffer2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,24 +241,31 @@
         <option value="$PROJECT_DIR$/src/main.java" />
         <option value="$PROJECT_DIR$/src/MineSweep/main.java" />
         <option value="$PROJECT_DIR$/src/BlockData/NullBlock.java" />
-        <option value="$PROJECT_DIR$/src/ImageProcessing/MouseMove.java" />
-        <option value="$PROJECT_DIR$/src/MineSweep/BlockStruct.java" />
-        <option value="$PROJECT_DIR$/src/BlockData/Block.java" />
         <option value="$PROJECT_DIR$/src/BlockData/CompleteBlock.java" />
-        <option value="$PROJECT_DIR$/src/BlockData/NoneBlock.java" />
         <option value="$PROJECT_DIR$/src/BlockData/NumberBlock.java" />
         <option value="$PROJECT_DIR$/src/BlockData/MineBlock.java" />
         <option value="$PROJECT_DIR$/src/MineSweep/Main.java" />
+        <option value="$PROJECT_DIR$/src/BlockData/NoneBlock.java" />
+        <option value="$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java" />
+        <option value="$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java" />
         <option value="$PROJECT_DIR$/src/ImageProcessing/OpenMineGUI.java" />
+        <option value="$PROJECT_DIR$/src/BlockData/Block.java" />
         <option value="$PROJECT_DIR$/src/MineSweep/MineSweeping.java" />
+        <option value="$PROJECT_DIR$/src/ImageProcessing/MouseMove.java" />
+        <option value="$PROJECT_DIR$/src/MineSweep/BlockStruct.java" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="10" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -164,6 +275,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,13 +311,12 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543729433302" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543741547408" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jna-5.1.0.jar!/" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -258,7 +369,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15085287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -267,15 +378,16 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31600833" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25813448" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3286334" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -283,20 +395,13 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32995737" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/BlockData/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="25" column="58" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ImageProcessing/ImageProcessing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -304,10 +409,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlockData/CompleteBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="414" column="10" selection-start-line="414" selection-start-column="10" selection-end-line="414" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="237" column="29" selection-start-line="237" selection-start-column="29" selection-end-line="237" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MineSweep/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="152">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
           <folding>
             <element signature="e#475#476#0" expanded="true" />
             <element signature="e#528#529#0" expanded="true" />
@@ -315,13 +458,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/MouseMove.java">
+    <entry file="file://$PROJECT_DIR$/src/BlockData/NumberBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+        <state relative-caret-position="266">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#306#307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlockData/NoneBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlockData/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -335,69 +496,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlockData/NoneBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlockData/CompleteBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowCapture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MineSweep/BlockStruct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="92" column="30" lean-forward="true" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/WindowDetect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getBlockRectangle#1;class#WindowDetect#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlockData/NumberBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ImageProcessing/OpenMineGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="50" lean-forward="true" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+        <state relative-caret-position="365">
+          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageProcessing/MouseMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -406,12 +518,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MineSweep/MineSweeping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+        <state relative-caret-position="441">
+          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#227#228#0" expanded="true" />
-            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MineSweep/BlockStruct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="237" column="29" lean-forward="true" selection-start-line="237" selection-start-column="29" selection-end-line="237" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#BlockStruct#0;class#BlockStruct#0" />
+            <element signature="method#init#0;class#BlockStruct#0" />
+            <element signature="method#getBlock#0;class#BlockStruct#0" />
+            <element signature="method#getBuffer#0;class#BlockStruct#0" />
+            <element signature="method#setBlock#0;class#BlockStruct#0" />
+            <element signature="method#setBuffer#0;class#BlockStruct#0" />
           </folding>
         </state>
       </provider>
@@ -422,10 +550,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>unnamed</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
