@@ -13,14 +13,14 @@ public class MouseMove {
         rob.mouseMove(i, j);
         rob.mousePress(InputEvent.BUTTON1_MASK);
         rob.mouseRelease(InputEvent.BUTTON1_MASK);
-        rob.delay(100);
+        rob.delay(20);
     }
 
     public void rightClick(int i,int j){
         rob.mouseMove(i, j);
         rob.mousePress(InputEvent.BUTTON3_MASK);
         rob.mouseRelease(InputEvent.BUTTON3_MASK);
-        rob.delay(100);
+        rob.delay(20);
     }
 
     public void allClick(int i, int j){
@@ -29,6 +29,6 @@ public class MouseMove {
         rob.mousePress(InputEvent.BUTTON3_MASK);
         rob.mouseRelease(InputEvent.BUTTON1_MASK);
         rob.mouseRelease(InputEvent.BUTTON3_MASK);
-        rob.delay(100);
+        rob.delay(20);
     }
 }

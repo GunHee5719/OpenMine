@@ -319,7 +319,7 @@ public class BlockStruct {
             returnValue = 1;
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
