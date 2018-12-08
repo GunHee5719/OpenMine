@@ -27,3 +27,4 @@ public abstract class Block {
 
     abstract public void MouseClick() throws AWTException;
 }
+
